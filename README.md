@@ -15,6 +15,7 @@ for example:
    `./box.sh firefox "apt-get install -y firefox"`
 
 2. run
+
    `xhost +` (for gui app only)
    `docker run -e DISPLAY --net=host firefox`
 
