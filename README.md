@@ -15,7 +15,7 @@ for example:
    `./box.sh firefox "apt-get install -y firefox"`
 
 2. run
-
+   `xhost +` (for gui app only)
    `docker run -e DISPLAY --net=host firefox`
 
 
@@ -26,8 +26,3 @@ for example:
 - arch
 
 
-## Notes
-
-1. To run gui apps in container ,you need to run the command below first:
-
-    `xhost +`
