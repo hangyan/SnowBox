@@ -12,13 +12,13 @@ for example:
 
 1. build
 
-   `./box.sh firefox "apt-get install -y firefox"`
+   `./box.sh firefox "apt-get install -y firefox:v1"`
 
 2. run
 
     `xhost +` (for gui app only)
 
-    `docker run -e DISPLAY --net=host firefox`
+    `docker run -e DISPLAY --net=host firefox:v1 firefox`
 
 
 ## Supported Distros
