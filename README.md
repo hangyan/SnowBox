@@ -8,12 +8,14 @@ host os at all.
 ## usage
 `./box.sh <image name> <package install command>`
 
-example:
+for example:
 
 1. build
+
    `./box.sh firefox "apt-get install -y firefox"`
 
 2. run
+
    `docker run -e DISPLAY --net=host firefox`
 
 
@@ -23,3 +25,9 @@ example:
 - ubuntu
 - arch
 
+
+## Notes
+
+1. To run gui apps in container ,you need to run the command below first:
+
+    `xhost +`
