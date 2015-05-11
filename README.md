@@ -16,8 +16,9 @@ for example:
 
 2. run
 
-   `xhost +` (for gui app only)
-   `docker run -e DISPLAY --net=host firefox`
+    `xhost +` (for gui app only)
+
+    `docker run -e DISPLAY --net=host firefox`
 
 
 ## Supported Distros
@@ -25,5 +26,5 @@ for example:
 - centos
 - ubuntu
 - arch
-
+- ...
 
