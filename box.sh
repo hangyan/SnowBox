@@ -23,7 +23,7 @@ set_distro_name()
         DISTRO_VERSION=$(head -1 /etc/issue | awk '{print $2}' | awk -F"." '{print $1"."$2}')
     elif [ "$DISTRO_NAME" == "centos" ] || [ "$DISTRO_NAME" == "debian" ]; then
         DISTRO_VERSION=$(head -1 /etc/issue | awk '{print $3}')
-    else 
+    elif [ "$DISTRO_NAME" == "arch" ]; then
         DISTRO_VERSION=""
     fi
 
@@ -48,6 +48,7 @@ gen_dockerfile()
     echo "MAINTAINER SnoxBox" >> $dockerfile
 
     ## use mirrors in china
+    ## TODO: update other distros' configs
     if [ "$DISTRO_NAME" == "ubuntu" ]; then
         echo "RUN sed -i \"s/archive.ubuntu.com/mirrors.ustc.edu.cn/\" /etc/apt/sources.list" >> $dockerfile
     fi
@@ -67,12 +68,14 @@ gen_dockerfile()
 
 usage()
 {
-    echo "hehe"
+    cat <<EOF
+ Usage: $0 <image name> <package install command>
+EOF
 }
 
 main()
 {
-    if [ $# -ne 1 ]; then
+    if [ $# -ne 2 ]; then
         usage
     fi
 
