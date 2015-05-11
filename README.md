@@ -12,7 +12,7 @@ for example:
 
 1. build
 
-   `./box.sh firefox "apt-get install -y firefox:v1"`
+   `./box.sh firefox:v1 "apt-get install -y firefox"`
 
 2. run
 
