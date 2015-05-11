@@ -2,7 +2,7 @@
 A sandbox for linux based on docker.
 
 This script will build an image with the package you want to install,and then
-you can run it within a container,then you can delete the container.No harm to your
+you can run it within a container and delete it.No harm to your
 host os at all.
 
 ## usage
