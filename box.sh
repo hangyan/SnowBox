@@ -18,7 +18,7 @@ set_distro_name()
     name=$(head -1 /etc/issue | awk '{print $1}')
     DISTRO_NAME=$(echo "${name,,}")
 
-    ## 
+    ##  TODO : others
     if [ "$DISTRO_NAME" == "ubuntu" ]; then
         DISTRO_VERSION=$(head -1 /etc/issue | awk '{print $2}' | awk -F"." '{print $1"."$2}')
     elif [ "$DISTRO_NAME" == "centos" ] || [ "$DISTRO_NAME" == "debian" ]; then
@@ -55,15 +55,17 @@ gen_dockerfile()
 
     ## use mirrors in china
     ## TODO: update other distros' configs
-    if [ "$DISTRO_NAME" == "ubuntu" ]; then
-        echo "RUN sed -i \"s/archive.ubuntu.com/mirrors.ustc.edu.cn/\" /etc/apt/sources.list" >> $dockerfile
-    fi
+    ## if [ "$DISTRO_NAME" == "ubuntu" ]; then
+    ##    echo "RUN sed -i \"s/archive.ubuntu.com/mirrors.ustc.edu.cn/\" /etc/apt/sources.list" >> $dockerfile
+    ## fi
 
     ## refresh repos
     if [ "$DISTRO_NAME" == "ubuntu" ]; then
         echo "RUN apt-get update" >> $dockerfile
     fi
 
+    ## term
+    echo "ENV TERM xterm" >> $dockerfile
 
     ## real action
     echo "RUN $2" >> $dockerfile
@@ -83,6 +85,7 @@ main()
 {
     if [ $# -ne 2 ]; then
         usage
+	exit 1
     fi
 
     set_distro_name 
