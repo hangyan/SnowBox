@@ -28,3 +28,5 @@ for example:
 - arch
 - ...
 
+## Notes
+1. Package install command should be auto confirmed,mostly it's a `-y` flag
