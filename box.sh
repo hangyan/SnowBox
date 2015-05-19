@@ -18,13 +18,19 @@ set_distro_name()
     name=$(head -1 /etc/issue | awk '{print $1}')
     DISTRO_NAME=$(echo "${name,,}")
 
-    ## centos 7
+    ## 
     if [ "$DISTRO_NAME" == "ubuntu" ]; then
         DISTRO_VERSION=$(head -1 /etc/issue | awk '{print $2}' | awk -F"." '{print $1"."$2}')
     elif [ "$DISTRO_NAME" == "centos" ] || [ "$DISTRO_NAME" == "debian" ]; then
         DISTRO_VERSION=$(head -1 /etc/issue | awk '{print $3}')
     elif [ "$DISTRO_NAME" == "arch" ]; then
         DISTRO_VERSION=""
+    elif [ "$DISTRO_NAME" == "" ] || [ -f /etc/centos-release ]; then
+        DISTRO_NAME="centos"
+        DISTRO_VERSION=$(cat /etc/centos-release | awk '{print $4}' | awk -F'.' '{print $1}')
+    else
+        echo "Not Supported Ditros."
+        exit 1
     fi
 
 }
